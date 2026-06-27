@@ -1,8 +1,7 @@
 import sys, os
 sys.path.insert(0, r"C:\Users\minec\AppData\Local\hermes\hermes-agent\venv\Lib\site-packages")
 
-from flask import Flask, render_template, request, jsonify, abort, session, redirect, url_for
-from flask_cors import CORS
+from flask import Flask, render_template, request, jsonify, abort, session, redirect, url_for, make_response
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.exceptions import HTTPException
 from datetime import datetime, timedelta
@@ -11,8 +10,21 @@ from functools import wraps
 from collections import defaultdict
 
 app = Flask(__name__)
-CORS(app)
-app.config['CORS_ORIGINS'] = '*'  # Required for cross-origin fetch from Surge
+
+def add_cors_headers(resp):
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS'
+    resp.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    return resp
+
+@app.after_request
+def after_request(resp):
+    return add_cors_headers(resp)
+
+@app.route('/submit', methods=['OPTIONS'])
+def cors_preflight():
+    resp = make_response('', 204)
+    return add_cors_headers(resp)
 
 # ==========================
 # CONFIGURATION

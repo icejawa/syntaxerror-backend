@@ -13,5 +13,35 @@
     "timestamp": "2026-06-27T15:15:21.807559",
     "status": "rejected",
     "notes": "TEST\n"
+  },
+  {
+    "discord": "@realtryhxrdtaco",
+    "email": "brileymullinsbass13@gmail.com",
+    "age": "14",
+    "location": "EST-Florida",
+    "role": "Hardware Specialist",
+    "hours": "6",
+    "referral": "friend",
+    "motivation": "I wanna help my friends buisiness",
+    "experience": "I am existing person so im good at this",
+    "id": 2,
+    "timestamp": "2026-06-27T19:05:00",
+    "status": "pending",
+    "notes": ""
+  },
+  {
+    "discord": "@UltraD1v1ne",
+    "email": "justintardif321@gmail.com",
+    "age": "13",
+    "location": "ADT/AST-Canada",
+    "role": "Syntax Error Ambassador",
+    "hours": "7",
+    "referral": "I work here!",
+    "motivation": "Jesus",
+    "experience": "I literally work for you",
+    "id": 3,
+    "timestamp": "2026-06-27T20:10:00",
+    "status": "pending",
+    "notes": ""
   }
 ]
