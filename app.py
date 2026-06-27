@@ -10,6 +10,8 @@ from functools import wraps
 from collections import defaultdict
 
 app = Flask(__name__)
+CORS(app)
+app.config['CORS_ORIGINS'] = '*'  # Required for cross-origin fetch from Surge
 
 # ==========================
 # CONFIGURATION
