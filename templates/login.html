@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syntax Error - Admin Login</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0014;
+    color: #e8e0f0;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .login-box {
+    background: #12001f;
+    border: 1px solid #2d1b4e;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+  }
+  .login-box h1 {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.3rem;
+    color: #c084fc;
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+  }
+  .login-box .subtitle {
+    text-align: center;
+    color: #6b46c1;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    margin-bottom: 30px;
+  }
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+  label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: #c084fc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  input {
+    background: #0a0014;
+    border: 1px solid #2d1b4e;
+    color: #e8e0f0;
+    padding: 12px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus { border-color: #c084fc; }
+  .submit-btn {
+    background: linear-gradient(135deg, #6b21a8, #9333ea);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s;
+  }
+  .submit-btn:hover { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+  .error {
+    color: #fb7185;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .notice {
+    text-align: center;
+    color: #6b46c1;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="login-box">
+  <h1>[] Admin Access</h1>
+  <div class="subtitle">syntaxerror-staff</div>
+  {% if error %}
+  <div class="error">{{ error }}</div>
+  {% endif %}
+  <form method="POST">
+    <div class="field">
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Enter admin password" required autofocus>
+    </div>
+    <button type="submit" class="submit-btn">Authenticate</button>
+  </form>
+  <div class="notice">[ staff portal | session expires in 8h ]</div>
+</div>
+</body>
+</html>

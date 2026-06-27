@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syntax Error - Admin Panel</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0014;
+    color: #e8e0f0;
+    font-family: 'Inter', sans-serif;
+    padding: 30px;
+  }
+  h1 {
+    font-family: 'Fira Code', monospace;
+    color: #c084fc;
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(192,132,252,0.3);
+  }
+  .subtitle { color: #6b46c1; font-size: 0.8rem; margin-bottom: 30px; font-family: 'Fira Code', monospace; }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #2d1b4e;
+    color: #c084fc;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid #1a0a2e; font-size: 0.85rem; vertical-align: top; }
+  tr:hover td { background: #12001f; }
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 2px;
+  }
+  .pending { background: #2a1f00; color: #fbbf24; border: 1px solid #fbbf24; }
+  .accepted { background: #1a0a2e; color: #c084fc; border: 1px solid #c084fc; }
+  .rejected { background: #2a0a14; color: #fb7185; border: 1px solid #fb7185; }
+  .actions { display: flex; gap: 6px; }
+  button {
+    background: transparent;
+    border: 1px solid #4c1d95;
+    color: #c084fc;
+    padding: 5px 10px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+  }
+  button:hover { border-color: #c084fc; background: #1a0a2e; }
+  button.reject:hover { border-color: #fb7185; color: #fb7185; background: #2a0a14; }
+  textarea.notes {
+    background: #12001f;
+    border: 1px solid #2d1b4e;
+    color: #e8e0f0;
+    padding: 6px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    width: 100%;
+    min-width: 150px;
+    resize: vertical;
+    outline: none;
+  }
+  textarea.notes:focus { border-color: #c084fc; }
+  .timestamp { color: #6b46c1; font-family: 'Fira Code', monospace; font-size: 0.7rem; }
+  .role-tag { color: #9f7aea; }
+  a { color: #c084fc; text-decoration: none; font-family: 'Fira Code', monospace; font-size: 0.8rem; }
+  a:hover { text-decoration: underline; }
+  .counts { display: flex; gap: 20px; margin-bottom: 24px; }
+  .count-box {
+    background: #12001f;
+    border: 1px solid #2d1b4e;
+    padding: 14px 20px;
+  }
+  .count-box .num { font-family: 'Fira Code', monospace; font-size: 1.4rem; color: #c084fc; }
+  .count-box .lbl { font-size: 0.7rem; color: #6b46c1; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+  .surge-btn {
+    background: linear-gradient(135deg, #6b21a8, #9333ea);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    transition: all 0.2s;
+  }
+  .surge-btn:hover { background: linear-gradient(135deg, #7c3aed, #a855f7); box-shadow: 0 0 18px rgba(168,85,247,0.4); }
+  .surge-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .surge-status { color: #9f7aea; font-family: 'Fira Code', monospace; font-size: 0.85rem; margin-top: 8px; }
+</style>
+</head>
+<body>
+<h1>[] Syntax Error - Staff Queue</h1>
+<div class="subtitle">$ cat /var/log/recruits.log</div>
+
+
+<div class="counts">
+  <div class="count-box"><div class="num" id="countPending">{{ submissions | selectattr('status', 'equalto', 'pending') | list | length }}</div><div class="lbl">Pending</div></div>
+  <div class="count-box"><div class="num" id="countAccepted">{{ submissions | selectattr('status', 'equalto', 'accepted') | list | length }}</div><div class="lbl">Accepted</div></div>
+  <div class="count-box"><div class="num" id="countRejected">{{ submissions | selectattr('status', 'equalto', 'rejected') | list | length }}</div><div class="lbl">Rejected</div></div>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Discord</th>
+      <th>Email</th>
+      <th>Age</th>
+      <th>Location</th>
+      <th>Role</th>
+      <th>Motivation</th>
+      <th>Experience</th>
+      <th>Hours</th>
+      <th>Status</th>
+      <th>Notes</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sub in submissions %}
+    <tr>
+      <td>#{{ sub.id }}</td>
+      <td>{{ sub.discord }}</td>
+      <td><a href="mailto:{{ sub.email }}">{{ sub.email }}</a></td>
+      <td>{{ sub.age }}</td>
+      <td>{{ sub.location }}</td>
+      <td><span class="role-tag">{{ sub.role }}</span></td>
+      <td style="max-width:200px;">{{ sub.motivation[:120] }}{% if sub.motivation|length > 120 %}...{% endif %}</td>
+      <td style="max-width:180px;">{% if sub.experience %}{{ sub.experience[:100] }}{% if sub.experience|length > 100 %}...{% endif %}{% else %}<span style="color:#6b46c1;">—</span>{% endif %}</td>
+      <td>{{ sub.hours }}h/wk</td>
+      <td><span class="badge {{ sub.status }}">{{ sub.status }}</span></td>
+      <td><textarea class="notes" placeholder="Add notes..." onchange="updateNotes({{ sub.id }}, this.value)">{{ sub.get('notes', '') }}</textarea></td>
+      <td>
+        <div class="actions">
+          <button onclick="updateStatus({{ sub.id }}, 'accepted')">Accept</button>
+          <button onclick="updateStatus({{ sub.id }}, 'rejected')" class="reject">Reject</button>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<script>
+function updateStatus(id, status) {
+  fetch('/api/submission/' + id, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({status: status})
+  }).then(() => location.reload());
+}
+function updateNotes(id, notes) {
+  fetch('/api/submission/' + id, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({notes: notes})
+  });
+}
+function publishSurge() {
+  const btn = document.getElementById('surgeBtn');
+  const status = document.getElementById('surgeStatus');
+  btn.disabled = true;
+  status.textContent = 'Publishing...';
+  btn.textContent = 'Publishing...';
+  fetch('/api/publish-surge', { method: 'POST' })
+    .then(r => r.json())
+    .then(data => {
+      if (data.success) {
+        status.textContent = 'Live: ' + data.url;
+        btn.textContent = 'Published';
+      } else {
+        status.textContent = 'Error: ' + (data.error || 'unknown');
+        btn.disabled = false;
+        btn.textContent = 'Retry Publish';
+      }
+    })
+    .catch(() => {
+      status.textContent = 'Publish failed — is surge installed?';
+      btn.disabled = false;
+      btn.textContent = 'Retry Publish';
+    });
+}
+</script>
+</body>
+</html>

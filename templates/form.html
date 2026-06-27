@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syntax Error - Staff Application</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0014;
+    color: #e8e0f0;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .container { max-width: 700px; margin: 0 auto; }
+  .brand {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .brand h1 {
+    font-family: 'Fira Code', monospace;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #c084fc;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(192,132,252,0.4);
+  }
+  .brand .subtitle {
+    color: #9f7aea;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+  .brand .tagline {
+    color: #6b46c1;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    margin-top: 4px;
+  }
+  form { display: flex; flex-direction: column; gap: 18px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: #c084fc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  input, select, textarea {
+    background: #12001f;
+    border: 1px solid #2d1b4e;
+    color: #e8e0f0;
+    padding: 12px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: #c084fc;
+    box-shadow: 0 0 10px rgba(192,132,252,0.2);
+  }
+  textarea { resize: vertical; min-height: 100px; }
+  .role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .role-option {
+    background: #12001f;
+    border: 1px solid #2d1b4e;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: #a89cc8;
+  }
+  .role-option:hover { border-color: #c084fc; color: #c084fc; }
+  .role-option input { display: none; }
+  .role-option:has(input:checked) {
+    border-color: #c084fc;
+    background: #1a0a2e;
+    color: #c084fc;
+    box-shadow: 0 0 14px rgba(192,132,252,0.25);
+  }
+  .submit-btn {
+    background: linear-gradient(135deg, #6b21a8, #9333ea);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s;
+  }
+  .submit-btn:hover { background: linear-gradient(135deg, #7c3aed, #a855f7); box-shadow: 0 0 18px rgba(168,85,247,0.4); }
+  .notice {
+    text-align: center;
+    color: #6b46c1;
+    font-size: 0.75rem;
+    margin-top: 20px;
+    font-family: 'Fira Code', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #2d1b4e;
+    margin: 8px 0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="brand">
+    <h1>[] Syntax Error</h1>
+    <div class="subtitle">STAFF APPLICATION SYSTEM</div>
+    <div class="tagline">$ whoami | grep -i "recruit"</div>
+  </div>
+  <hr class="divider">
+  <form id="appForm">
+    <div class="field">
+      <label>Discord Username</label>
+      <input type="text" name="discord" placeholder="@username" required>
+    </div>
+    <div class="field">
+      <label>Email Address</label>
+      <input type="email" name="email" placeholder="you@example.com" required>
+    </div>
+    <div class="field">
+      <label>Age</label>
+      <input type="number" name="age" placeholder="16" min="13" max="99" required>
+    </div>
+    <div class="field">
+      <label>Timezone / Location</label>
+      <input type="text" name="location" placeholder="EST - Florida" required>
+    </div>
+    <div class="field">
+      <label>Position Applying For</label>
+      <div class="role-grid" id="roleGrid">
+        <label class="role-option"><input type="radio" name="role" value="Security Researcher" required>Security Researcher</label>
+        <label class="role-option"><input type="radio" name="role" value="Hardware Specialist">Hardware Specialist</label>
+        <label class="role-option"><input type="radio" name="role" value="Web Developer">Web Developer</label>
+        <label class="role-option"><input type="radio" name="role" value="Community Manager">Community Manager</label>
+        <label class="role-option"><input type="radio" name="role" value="Tutorial Creator">Tutorial Creator</label>
+        <label class="role-option"><input type="radio" name="role" value="Syntax Error Ambassador">Syntax Error Ambassador</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Why do you want to join Syntax Error?</label>
+      <textarea name="motivation" placeholder="Tell us what drives you..." required></textarea>
+    </div>
+    <div class="field">
+      <label>Relevant Experience / Portfolio</label>
+      <textarea name="experience" placeholder="Links to GitHub, writeups, projects, past roles..."></textarea>
+    </div>
+    <div class="field">
+      <label>Hours per week you can contribute</label>
+      <input type="number" name="hours" placeholder="10" min="1" max="168" required>
+    </div>
+    <div class="field">
+      <label>How did you find us?</label>
+      <input type="text" name="referral" placeholder="Discord, friend, YouTube, etc.">
+    </div>
+    <button type="submit" class="submit-btn">Submit Application</button>
+  </form>
+  <div class="notice">[ submissions encrypted at rest | reviewed within 48h ]</div>
+</div>
+<script>
+const WEBHOOK_URL = '/submit';
+
+document.getElementById('appForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const data = {};
+  new FormData(form).forEach((v, k) => { data[k] = v; });
+
+  const embed = {
+    title: '📋 New Staff Application',
+    color: 0xc084fc,
+    fields: [
+      { name: 'Discord', value: data.discord || 'N/A', inline: true },
+      { name: 'Email', value: data.email || 'N/A', inline: true },
+      { name: 'Age', value: data.age || 'N/A', inline: true },
+      { name: 'Location', value: data.location || 'N/A', inline: true },
+      { name: 'Role', value: data.role || 'N/A', inline: false },
+      { name: 'Hours/wk', value: data.hours || 'N/A', inline: true },
+      { name: 'Referral', value: data.referral || 'N/A', inline: true },
+      { name: 'Motivation', value: (data.motivation || 'N/A').slice(0, 1024), inline: false },
+      { name: 'Experience', value: (data.experience || 'N/A').slice(0, 1024) || 'None provided', inline: false }
+    ],
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+    
+    const res = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      body: JSON.stringify({ embeds: [embed] }),
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+    
+    if (res.ok) {
+      form.innerHTML = '<div style="text-align:center;padding:60px 20px;"><h2 style="color:#c084fc;font-family:Fira Code,monospace;">Application Received.</h2><p style="color:#9f7aea;margin-top:10px;">We will review and respond within 48 hours.</p></div>';
+    } else {
+      const text = await res.text();
+      throw new Error('HTTP ' + res.status + ': ' + text.slice(0, 200));
+    }
+  } catch (err) {
+    const errorMsg = err.message || 'Unknown error';
+    form.innerHTML = '<div style="text-align:center;padding:60px 20px;color:#fb7185;font-family:Fira Code,monospace;"><h2>Submission failed.</h2><p style="font-size:0.8rem;margin-top:8px;">' + errorMsg + '</p><p style="font-size:0.75rem;margin-top:4px;color:#6b46c1;">Contact us directly at SyntaxBoss@proton.me</p></div>';
+    console.error('Webhook error:', err);
+  }
+});
+</script>
+</body>
+</html>
